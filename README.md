@@ -1,4 +1,4 @@
-#pyTLA
+# pyTLA
 Takes python bytecode and generates TLA+ specs from it. You add your own tests for models to run.
 
 ## Installation
