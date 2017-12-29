@@ -1,4 +1,4 @@
-import argparse, importlib, dis, subprocess, os
+import argparse, importlib, dis, subprocess, os, ast
 import src.opscodes as ops
 
 parser = argparse.ArgumentParser(add_help=True)
@@ -6,7 +6,10 @@ parser.add_argument('-f', type=str, help="file to convert")
 args = parser.parse_args()
 
 with open('pyscripts/'+args.f+'.py') as f:
-	s = compile(f.read(), args.f, 'exec')
+	c = f.read()
+	a = ast.parse(c, args.f, 'exec')
+	print(ast.dump(a))
+	s = compile(a, args.f, 'exec')
 
 # Write PlusCal
 b = ops.OpsCode(s, args.f)
